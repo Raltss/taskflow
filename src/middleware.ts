@@ -15,12 +15,22 @@ export async function middleware(request: NextRequest) {
     }}
   )
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user && !request.nextUrl.pathname.startsWith('/login')) {
+
+  const isAuthPage = request.nextUrl.pathname.startsWith('/login') ||
+                     request.nextUrl.pathname.startsWith('/signup')
+
+  if (!user && !isAuthPage) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
+
+  // If logged in and trying to access login/signup, redirect to dashboard
+  if (user && isAuthPage) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
+
   return response
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|auth).*)'],
 }
