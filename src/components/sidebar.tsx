@@ -6,9 +6,8 @@ import { createClient } from '@/lib/supabase/client'
 
 const ownerLinks = [
   { href: '/dashboard/owner', label: 'Overview', icon: '⊞' },
-  { href: '/dashboard/owner/projects', label: 'Projects', icon: '📁' },
-  { href: '/dashboard/owner/editors', label: 'Editors', icon: '👥' },
   { href: '/dashboard/owner/tasks', label: 'Tasks', icon: '✓' },
+  { href: '/dashboard/owner/editors', label: 'Editors', icon: '👥' },
 ]
 
 const editorLinks = [
@@ -30,7 +29,7 @@ export default function Sidebar({ role }: { role: 'owner' | 'editor' }) {
   return (
     <aside className="w-60 min-h-screen bg-white border-r flex flex-col">
       <div className="px-5 py-5 border-b">
-        <h1 className="text-base font-semibold tracking-tight">TaskFlow</h1>
+        <h1 className="text-base font-semibold tracking-tight">TUC Agency</h1>
         <p className="text-xs text-gray-400 mt-0.5 capitalize">{role}</p>
       </div>
 
